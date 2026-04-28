@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Appointment Scheduling & Attendance</h2>
+<form method="post" class="grid-form">
+    <select name="patient_id" required><option value="">Patient</option>{% for p in patients %}<option value="{{ p.id }}">{{ p.full_name }}</option>{% endfor %}</select>
+    <select name="doctor_id" required><option value="">Doctor</option>{% for d in doctors %}<option value="{{ d.id }}">{{ d.full_name }}</option>{% endfor %}</select>
+    <input name="appointment_datetime" type="datetime-local" required>
+    <input name="reason_for_visit" placeholder="Reason for visit">
+    <input name="patient_check_in" type="datetime-local">
+    <input name="patient_check_out" type="datetime-local">
+    <select name="status"><option>booked</option><option>checked_in</option><option>completed</option><option>cancelled</option></select>
+    <button type="submit">Add Appointment</button>
+</form>
+<table>
+    <tr><th>Date/Time</th><th>Patient</th><th>Doctor</th><th>Reason</th><th>Check-in/out</th><th>Status</th></tr>
+    {% for appt in appointments %}
+    <tr>
+        <td>{{ appt.appointment_datetime }}</td>
+        <td>{{ appt.patient.full_name }}</td>
+        <td>{{ appt.doctor.full_name }}</td>
+        <td>{{ appt.reason_for_visit }}</td>
+        <td>{{ appt.patient_check_in }} / {{ appt.patient_check_out }}</td>
+        <td>{{ appt.status }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

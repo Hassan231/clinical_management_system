@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Medication Master</h2>
+<form method="post" class="grid-form">
+    <input name="name" placeholder="Medicine name" required>
+    <input name="dosage_options" placeholder="Dosage options" required>
+    <input name="manufacturer" placeholder="Manufacturer">
+    <input name="unit_cost" type="number" step="0.01" placeholder="Unit cost" required>
+    <textarea name="side_effects" placeholder="Side effects"></textarea>
+    <button type="submit">Add Medication</button>
+</form>
+<table>
+    <tr><th>Name</th><th>Dosage</th><th>Manufacturer</th><th>Cost</th><th>Side effects</th></tr>
+    {% for medication in medications %}
+    <tr>
+        <td>{{ medication.name }}</td>
+        <td>{{ medication.dosage_options }}</td>
+        <td>{{ medication.manufacturer }}</td>
+        <td>{{ medication.unit_cost }}</td>
+        <td>{{ medication.side_effects }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

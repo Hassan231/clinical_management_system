@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Inventory Tracking</h2>
+<form method="post" class="grid-form">
+    <select name="medication_id" required>
+        <option value="">Medication</option>
+        {% for med in medications %}<option value="{{ med.id }}">{{ med.name }}</option>{% endfor %}
+    </select>
+    <input name="batch_number" placeholder="Batch number" required>
+    <input name="storage_location" placeholder="Storage location" required>
+    <input name="expiration_date" type="date" required>
+    <input name="current_stock" type="number" placeholder="Current stock" required>
+    <input name="reorder_level" type="number" placeholder="Reorder level" required>
+    <button type="submit">Add Batch</button>
+</form>
+<h3>Stock Batches</h3>
+<table>
+    <tr><th>Medicine</th><th>Batch</th><th>Location</th><th>Expiry</th><th>Stock</th><th>Reorder level</th></tr>
+    {% for batch in batches %}
+    <tr>
+        <td>{{ batch.medication.name }}</td>
+        <td>{{ batch.batch_number }}</td>
+        <td>{{ batch.storage_location }}</td>
+        <td>{{ batch.expiration_date }}</td>
+        <td>{{ batch.current_stock }}</td>
+        <td>{{ batch.reorder_level }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<h3>Below Reorder</h3>
+<ul>
+    {% for b in below_reorder %}
+    <li>{{ b.medication.name }} (Batch {{ b.batch_number }}) - {{ b.current_stock }} left</li>
+    {% else %}
+    <li>No medicines are currently below reorder level.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

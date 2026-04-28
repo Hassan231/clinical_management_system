@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Patient-Doctor Visits & Medical Reports</h2>
+<form method="post" class="grid-form">
+    <select name="appointment_id" required>
+        <option value="">Appointment</option>
+        {% for a in appointments %}
+        <option value="{{ a.id }}">{{ a.appointment_datetime }} - {{ a.patient.full_name }} with {{ a.doctor.full_name }}</option>
+        {% endfor %}
+    </select>
+    <input name="reason" placeholder="Reason for visit" required>
+    <input name="diagnosis" placeholder="Diagnosis" required>
+    <textarea name="test_results" placeholder="Test results"></textarea>
+    <textarea name="clinical_findings" placeholder="Clinical findings"></textarea>
+    <textarea name="notes" placeholder="Clinical notes"></textarea>
+    <button type="submit">Create Visit Record</button>
+</form>
+<table>
+    <tr><th>Visit date</th><th>Patient</th><th>Doctor</th><th>Reason</th><th>Diagnosis</th><th>Report summary</th></tr>
+    {% for visit in visits %}
+    <tr>
+        <td>{{ visit.visit_date }}</td>
+        <td>{{ visit.patient.full_name }}</td>
+        <td>{{ visit.doctor.full_name }}</td>
+        <td>{{ visit.reason }}</td>
+        <td>{{ visit.diagnosis }}</td>
+        <td>{{ visit.test_results }} | {{ visit.clinical_findings }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

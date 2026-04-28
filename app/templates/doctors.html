@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Doctor Management</h2>
+<form method="post" class="grid-form">
+    <input name="full_name" placeholder="Full name" required>
+    <input name="specialty" placeholder="Specialty" required>
+    <input name="department" placeholder="Department" required>
+    <input name="qualifications" placeholder="Qualifications" required>
+    <input name="phone" placeholder="Phone">
+    <input name="email" type="email" placeholder="Email">
+    <input name="consultation_fee" type="number" step="0.01" placeholder="Consultation fee" required>
+    <input name="procedure_fee" type="number" step="0.01" placeholder="Procedure fee" required>
+    <input name="service_rates" placeholder="Service rates (e.g. X-ray:100, ECG:80)">
+    <button type="submit">Add Doctor</button>
+</form>
+<table>
+    <tr><th>Name</th><th>Department</th><th>Specialty</th><th>Qualifications</th><th>Fees</th></tr>
+    {% for doctor in doctors %}
+    <tr>
+        <td>{{ doctor.full_name }}</td>
+        <td>{{ doctor.department }}</td>
+        <td>{{ doctor.specialty }}</td>
+        <td>{{ doctor.qualifications }}</td>
+        <td>Consult: {{ doctor.consultation_fee }} | Procedure: {{ doctor.procedure_fee }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

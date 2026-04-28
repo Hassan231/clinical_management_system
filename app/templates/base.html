@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinical Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Clinical Management System</h1>
+        <nav>
+            <a href="{{ url_for('main.index') }}">Dashboard</a>
+            <a href="{{ url_for('main.doctors') }}">Doctors</a>
+            <a href="{{ url_for('main.patients') }}">Patients</a>
+            <a href="{{ url_for('main.medications') }}">Medications</a>
+            <a href="{{ url_for('main.inventory') }}">Inventory</a>
+            <a href="{{ url_for('main.shifts') }}">Shifts</a>
+            <a href="{{ url_for('main.appointments') }}">Appointments</a>
+            <a href="{{ url_for('main.visits') }}">Visits & Reports</a>
+            <a href="{{ url_for('main.prescriptions') }}">Prescriptions</a>
+            <a href="{{ url_for('main.billing') }}">Billing</a>
+            <a href="{{ url_for('main.reports') }}">Queries</a>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

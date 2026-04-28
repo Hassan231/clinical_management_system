@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Doctor Shift & Attendance</h2>
+<form method="post" class="grid-form">
+    <select name="doctor_id" required><option value="">Doctor</option>{% for d in doctors %}<option value="{{ d.id }}">{{ d.full_name }}</option>{% endfor %}</select>
+    <input name="shift_date" type="date" required>
+    <input name="planned_in_time" type="datetime-local" required>
+    <input name="planned_out_time" type="datetime-local" required>
+    <input name="actual_in_time" type="datetime-local">
+    <input name="actual_out_time" type="datetime-local">
+    <select name="status"><option>scheduled</option><option>present</option><option>late</option><option>absent</option></select>
+    <button type="submit">Save Shift</button>
+</form>
+<table>
+    <tr><th>Doctor</th><th>Date</th><th>Planned</th><th>Actual</th><th>Status</th></tr>
+    {% for shift in shifts %}
+    <tr>
+        <td>{{ shift.doctor.full_name }}</td>
+        <td>{{ shift.shift_date }}</td>
+        <td>{{ shift.planned_in_time }} - {{ shift.planned_out_time }}</td>
+        <td>{{ shift.actual_in_time }} - {{ shift.actual_out_time }}</td>
+        <td>{{ shift.status }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

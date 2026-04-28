@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Prescription Entry & Medication Usage</h2>
+<form method="post" class="grid-form">
+    <select name="visit_id" required id="visit-select">
+        <option value="">Visit</option>
+        {% for v in visits %}
+        <option value="{{ v.id }}" data-patient="{{ v.patient_id }}" data-doctor="{{ v.doctor_id }}">
+            {{ v.visit_date }} - {{ v.patient.full_name }} / {{ v.doctor.full_name }}
+        </option>
+        {% endfor %}
+    </select>
+    <input name="patient_id" id="patient_id" placeholder="Patient ID" required>
+    <input name="doctor_id" id="doctor_id" placeholder="Doctor ID" required>
+    <select name="medication_id" required><option value="">Medication</option>{% for m in medications %}<option value="{{ m.id }}">{{ m.name }}</option>{% endfor %}</select>
+    <input name="dosage_instruction" placeholder="Dosage instruction" required>
+    <input name="frequency" placeholder="Frequency" required>
+    <input name="duration_days" type="number" placeholder="Duration days" required>
+    <input name="quantity" type="number" placeholder="Quantity to dispense" required>
+    <textarea name="special_notes" placeholder="Special notes"></textarea>
+    <button type="submit">Create Prescription</button>
+</form>
+<table>
+    <tr><th>Date</th><th>Visit</th><th>Patient ID</th><th>Doctor ID</th><th>Medication</th><th>Qty</th></tr>
+    {% for p in prescriptions %}
+    {% for item in p.items %}
+    <tr>
+        <td>{{ p.created_at }}</td>
+        <td>{{ p.visit_id }}</td>
+        <td>{{ p.patient_id }}</td>
+        <td>{{ p.doctor_id }}</td>
+        <td>{{ item.medication.name }}</td>
+        <td>{{ item.quantity }}</td>
+    </tr>
+    {% endfor %}
+    {% endfor %}
+</table>
+<script>
+const select = document.getElementById("visit-select");
+const patientId = document.getElementById("patient_id");
+const doctorId = document.getElementById("doctor_id");
+select.addEventListener("change", () => {
+  const option = select.options[select.selectedIndex];
+  patientId.value = option.getAttribute("data-patient") || "";
+  doctorId.value = option.getAttribute("data-doctor") || "";
+});
+</script>
+{% endblock %}

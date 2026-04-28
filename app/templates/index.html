@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Dashboard</h2>
+<div class="cards">
+    <div class="card"><h3>Doctors</h3><p>{{ metrics.doctors }}</p></div>
+    <div class="card"><h3>Patients</h3><p>{{ metrics.patients }}</p></div>
+    <div class="card"><h3>Appointments</h3><p>{{ metrics.appointments }}</p></div>
+    <div class="card"><h3>Visits</h3><p>{{ metrics.visits }}</p></div>
+    <div class="card"><h3>Medications</h3><p>{{ metrics.medications }}</p></div>
+</div>
+<p>Use the navigation bar to manage doctors, patients, visits, prescriptions, stock inventory, and billing.</p>
+{% endblock %}

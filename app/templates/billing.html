@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Billing & Doctor Fee Calculations</h2>
+<form method="post" class="grid-form">
+    <select name="visit_id" required>
+        <option value="">Visit</option>
+        {% for v in visits %}<option value="{{ v.id }}">{{ v.id }} - {{ v.patient.full_name }} / {{ v.doctor.full_name }}</option>{% endfor %}
+    </select>
+    <input name="doctor_id" type="number" placeholder="Doctor ID" required>
+    <select name="service_type" required><option>consultation</option><option>procedure</option><option>lab</option><option>other</option></select>
+    <input name="quantity" type="number" step="0.1" value="1" required>
+    <input name="unit_fee" type="number" step="0.01" placeholder="Unit fee" required>
+    <button type="submit">Add Billed Service</button>
+</form>
+
+<form method="get" class="inline-form">
+    <label>View bill for visit:</label>
+    <select name="visit_id"><option value="">Select visit</option>{% for v in visits %}<option value="{{ v.id }}">{{ v.id }}</option>{% endfor %}</select>
+    <button type="submit">Calculate</button>
+</form>
+
+{% if selected_visit %}
+<h3>Bill Summary for Visit {{ selected_visit.id }}</h3>
+<table>
+    <tr><th>Service</th><th>Qty</th><th>Unit Fee</th><th>Total</th></tr>
+    {% for service in services %}
+    <tr><td>{{ service.service_type }}</td><td>{{ service.quantity }}</td><td>{{ service.unit_fee }}</td><td>{{ service.total_fee }}</td></tr>
+    {% endfor %}
+</table>
+<p>Gross Amount: {{ gross }}</p>
+<p>Insurance Coverage: {{ coverage }}%</p>
+<p>Insurance Amount: {{ insurance_amount }}</p>
+<p><strong>Patient Payable: {{ payable }}</strong></p>
+{% endif %}
+{% endblock %}
