@@ -1,76 +1,103 @@
+/* Global Styles for the Clinical Management System */
+
+/* ── BODY & LAYOUT ──────────────────────────────────────────────────────────── */
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f4f7fb;
-    color: #1f2937;
+    margin: 0;                      /* Remove default browser margin */
+    font-family: Arial, sans-serif; /* Clean, readable sans-serif font */
+    background: #f4f7fb;            /* Light blue-grey background for the entire page */
+    color: #1f2937;                 /* Dark grey text for good contrast */
 }
+
+/* ── HEADER ─────────────────────────────────────────────────────────────────── */
 header {
-    background: #0f4c81;
-    color: #fff;
-    padding: 16px;
+    background: #0f4c81;  /* Dark blue header bar */
+    color: #fff;          /* White text for contrast */
+    padding: 16px;        /* Spacing inside the header */
 }
+
+/* ── NAVIGATION ─────────────────────────────────────────────────────────────── */
 nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 8px;
+    display: flex;        /* Horizontal layout for nav links */
+    flex-wrap: wrap;      /* Wrap links to the next line on small screens */
+    gap: 12px;            /* Space between each link */
+    margin-top: 8px;      /* Space between the header title and nav links */
 }
+
 nav a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 14px;
+    color: #fff;          /* White link text */
+    text-decoration: none; /* Remove underline from links */
+    font-size: 14px;      /* Slightly smaller font for nav links */
 }
+
+/* ── MAIN CONTENT AREA ──────────────────────────────────────────────────────── */
 main {
-    padding: 20px;
+    padding: 20px;  /* Spacing around the main content */
 }
+
+/* ── DASHBOARD CARDS ────────────────────────────────────────────────────────── */
 .cards {
-    display: grid;
+    display: grid;  /* Use CSS Grid for responsive card layout */
+    /* Auto-fit as many columns as possible, each at least 140px wide, then expand equally */
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 12px;
+    gap: 12px;      /* Space between cards */
 }
+
 .card {
-    background: #fff;
-    border-radius: 8px;
-    padding: 12px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    background: #fff;                      /* White background for each card */
+    border-radius: 8px;                    /* Rounded corners */
+    padding: 12px;                         /* Spacing inside each card */
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);  /* Subtle shadow for depth */
 }
+
+/* ── FORMS ──────────────────────────────────────────────────────────────────── */
 form {
-    background: #fff;
-    padding: 12px;
-    border-radius: 8px;
-    margin-bottom: 14px;
+    background: #fff;      /* White background for forms */
+    padding: 12px;         /* Spacing inside the form */
+    border-radius: 8px;    /* Rounded corners */
+    margin-bottom: 14px;   /* Space below the form before the next element */
 }
+
+/* Multi-column grid layout for form inputs — responsive and auto-wrapping */
 .grid-form {
     display: grid;
+    /* Auto-fit as many columns as possible, each at least 180px wide */
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 10px;
+    gap: 10px;  /* Space between form fields */
 }
+
+/* Horizontal inline form layout (used for filters and search forms) */
 .inline-form {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    align-items: center;
+    display: flex;         /* Horizontal layout */
+    flex-wrap: wrap;       /* Wrap to next line on small screens */
+    gap: 8px;              /* Space between elements */
+    align-items: center;   /* Vertically center all elements */
 }
+
+/* ── FORM CONTROLS ──────────────────────────────────────────────────────────── */
 input, select, textarea, button {
-    padding: 8px;
-    border: 1px solid #d1d5db;
-    border-radius: 4px;
+    padding: 8px;                  /* Spacing inside each control */
+    border: 1px solid #d1d5db;     /* Light grey border */
+    border-radius: 4px;            /* Slightly rounded corners */
 }
+
 button {
-    background: #0f4c81;
-    color: #fff;
-    border: none;
-    cursor: pointer;
+    background: #0f4c81;  /* Dark blue background matching the header */
+    color: #fff;          /* White text */
+    border: none;         /* Remove default button border */
+    cursor: pointer;      /* Show pointer cursor on hover */
 }
+
+/* ── TABLES ─────────────────────────────────────────────────────────────────── */
 table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #fff;
-    margin-bottom: 14px;
+    width: 100%;            /* Full width of the container */
+    border-collapse: collapse;  /* Remove spacing between cell borders */
+    background: #fff;       /* White background for the table */
+    margin-bottom: 14px;    /* Space below the table */
 }
+
 th, td {
-    border: 1px solid #e5e7eb;
-    padding: 8px;
-    text-align: left;
-    vertical-align: top;
+    border: 1px solid #e5e7eb;  /* Light grey borders around cells */
+    padding: 8px;               /* Spacing inside each cell */
+    text-align: left;           /* Left-align text in cells */
+    vertical-align: top;        /* Align cell content to the top (useful for multi-line cells) */
 }
